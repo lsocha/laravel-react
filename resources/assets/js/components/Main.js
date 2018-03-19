@@ -1,5 +1,7 @@
+// https://github.com/blizzerand/Laravel5.5_And_React_demo
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Product from './Product';
  
 /* An example React component */
 class Main extends Component {
@@ -54,12 +56,14 @@ class Main extends Component {
 		/* Some css code has been removed for brevity */
 		return (
 			<div>
+				<div>
+				all products
+				</div>
 			    <div>
 		          <ul>
 		            { this.renderProducts() }
 		          </ul> 
 		        </div>
-
 		        <Product product={this.state.currentProduct} />
 		    </div> 
 		);

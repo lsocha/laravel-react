@@ -1,3 +1,4 @@
+// https://github.com/blizzerand/Laravel5.5_And_React_demo
 import React, { Component } from 'react';
  
 /* Stateless component or pure component
