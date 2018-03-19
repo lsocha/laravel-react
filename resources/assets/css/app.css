@@ -1,0 +1,13 @@
+.mainDivStyle {
+	display: flex;
+	flexDirection: row;
+}
+    
+.divStyle {
+	justifyContent: flex-start;
+	padding: 10px;
+	width: 35%;
+	background: #f0f0f0;
+	padding: 20px 20px 20px 20px;
+	margin: 30px 10px 10px 30px;
+}

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Product from './Product';
+import '../../css/app.css';
  
 /* An example React component */
 class Main extends Component {
@@ -53,26 +54,11 @@ class Main extends Component {
 	}
 
 	render() {
-		/* Some css code has been removed for brevity */
-		const mainDivStyle =  {
-        display: "flex",
-        flexDirection: "row"
-    	}
-    
-	    const divStyle = {
-	       
-	        justifyContent: "flex-start",
-	        padding: '10px',
-	        width: '35%',
-	        background: '#f0f0f0',
-	        padding: '20px 20px 20px 20px',
-	        margin: '30px 10px 10px 30px'
-	        
-	    }
+		/* Some css code has been removed for brevity to css/app.css file */
 		return (
 			<div>
-				<div style= {mainDivStyle}>
-					<div style={divStyle}>
+				<div className='mainDivStyle'>
+					<div className='divStyle'>
 						<h3> All products </h3>
 						<ul>
 							{ this.renderProducts() }

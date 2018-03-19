@@ -1,4 +1,3 @@
-// https://github.com/blizzerand/Laravel5.5_And_React_demo
 import React, { Component } from 'react';
  
 /* Stateless component or pure component
@@ -8,6 +7,10 @@ const Product = ({product}) => {
     
   const divStyle = {
       /*code omitted for brevity */
+      display: 'flex',
+      flexDirection: 'column',
+      width: '65%',
+      margin: '30px 10px 10px 30px'
   }
  
   //if the props product is null, return Product doesn't exist
