@@ -54,18 +54,33 @@ class Main extends Component {
 
 	render() {
 		/* Some css code has been removed for brevity */
+		const mainDivStyle =  {
+        display: "flex",
+        flexDirection: "row"
+    	}
+    
+	    const divStyle = {
+	       
+	        justifyContent: "flex-start",
+	        padding: '10px',
+	        width: '35%',
+	        background: '#f0f0f0',
+	        padding: '20px 20px 20px 20px',
+	        margin: '30px 10px 10px 30px'
+	        
+	    }
 		return (
 			<div>
-				<div>
-				all products
+				<div style= {mainDivStyle}>
+					<div style={divStyle}>
+						<h3> All products </h3>
+						<ul>
+							{ this.renderProducts() }
+						</ul> 
+					</div> 
+					<Product product={this.state.currentProduct} />
 				</div>
-			    <div>
-		          <ul>
-		            { this.renderProducts() }
-		          </ul> 
-		        </div>
-		        <Product product={this.state.currentProduct} />
-		    </div> 
+			</div> 
 		);
 	}
 }
