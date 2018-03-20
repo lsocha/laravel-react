@@ -1,4 +1,5 @@
 // https://github.com/blizzerand/Laravel5.5_And_React_demo
+// https://github.com/amritms/Laravel5.5_And_React_demo/blob/react-crud/resources/assets/js/components/Main.js
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Product from './Product';
@@ -16,12 +17,15 @@ class Main extends Component {
      	 */
     	this.state = {
         	products: [],
-        	currentProduct: null
+        	currentProduct: null,
+        	editButtonClicked: false
     	}
     	// bind the handleProduct method to the class
     	this.handleAddProduct = this.handleAddProduct.bind(this);
     	this.handleDelete = this.handleDelete.bind(this);
     	this.handleDeleteConfirmation = this.handleDeleteConfirmation.bind(this);
+    	this.handleEdit = this.handleEdit.bind(this);
+    	this.handleUpdate = this.handleUpdate.bind(this);
   	}
 
 	/*componentDidMount() is a lifecycle method
@@ -107,6 +111,10 @@ class Main extends Component {
 		}
 	}
 
+	handleEdit() {
+		this.setState({ editButtonClicked: true });
+	}
+
 	handleUpdate(product) {
 		const currentProduct = this.state.currentProduct;
 		fetch( 'api/products/' + currentProduct.id, {
@@ -138,17 +146,18 @@ class Main extends Component {
 		return (
 			<div>
 				<div className='mainDivStyle pull-left'>
-					<div className='divStyle pull-left'>
+					<div className='divStyle col-sm-2 pull-left'>
 						<h3> All products </h3>
-						<ul>
-							{ this.renderProducts() }
-						</ul> 
-					</div> 
+						<ul>{ this.renderProducts() }</ul> 
+					</div>
+
 					<Product 
 						product={this.state.currentProduct}
 						handleDelete={this.handleDelete}
-						handleDeleteConfirmation={this.handleDeleteConfirmation} 
+						handleDeleteConfirmation={this.handleDeleteConfirmation}
+						handleEdit={this.handleEdit} 
 					/>
+
 					<AddProduct onAdd={this.handleAddProduct} />
 				</div>
 			</div> 

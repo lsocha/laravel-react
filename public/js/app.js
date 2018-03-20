@@ -54218,6 +54218,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 // https://github.com/blizzerand/Laravel5.5_And_React_demo
+// https://github.com/amritms/Laravel5.5_And_React_demo/blob/react-crud/resources/assets/js/components/Main.js
 
 
 
@@ -54240,11 +54241,14 @@ var Main = function (_Component) {
 
 		_this.state = {
 			products: [],
-			currentProduct: null
+			currentProduct: null,
+			editButtonClicked: false
 			// bind the handleProduct method to the class
 		};_this.handleAddProduct = _this.handleAddProduct.bind(_this);
 		_this.handleDelete = _this.handleDelete.bind(_this);
 		_this.handleDeleteConfirmation = _this.handleDeleteConfirmation.bind(_this);
+		_this.handleEdit = _this.handleEdit.bind(_this);
+		_this.handleUpdate = _this.handleUpdate.bind(_this);
 		return _this;
 	}
 
@@ -54351,6 +54355,11 @@ var Main = function (_Component) {
 			}
 		}
 	}, {
+		key: 'handleEdit',
+		value: function handleEdit() {
+			this.setState({ editButtonClicked: true });
+		}
+	}, {
 		key: 'handleUpdate',
 		value: function handleUpdate(product) {
 			var _this6 = this;
@@ -54390,7 +54399,7 @@ var Main = function (_Component) {
 					{ className: 'mainDivStyle pull-left' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'div',
-						{ className: 'divStyle pull-left' },
+						{ className: 'divStyle col-sm-2 pull-left' },
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'h3',
 							null,
@@ -54405,7 +54414,8 @@ var Main = function (_Component) {
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Product__["a" /* default */], {
 						product: this.state.currentProduct,
 						handleDelete: this.handleDelete,
-						handleDeleteConfirmation: this.handleDeleteConfirmation
+						handleDeleteConfirmation: this.handleDeleteConfirmation,
+						handleEdit: this.handleEdit
 					}),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__AddProduct__["a" /* default */], { onAdd: this.handleAddProduct })
 				)

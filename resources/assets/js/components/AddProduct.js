@@ -76,6 +76,11 @@ class AddProduct extends Component {
               <label> Price: </label>
               <input type="number" className="form-control" onChange={(e)=>this.handleInput('price',e)} required />
             </div>
+
+            {/*<div className="form-check">
+              <input type="checkbox" className="form-check-input" value='1' onChange={(e)=>this.handleInput('availability',e)} />
+              <label className="form-check-label">In stock</label>
+            </div>*/}
              
            { /* Input fields for Price and availability omitted for brevity */}
             <input type="submit" className="btn btn-primary" value="Submit" />
