@@ -1,6 +1,8 @@
 <-- tutorial link
 	https://code.tutsplus.com/tutorials/build-a-react-app-with-laravel-restful-backend-part-1-laravel-5-api--cms-29442
-	
+
+<-- laravel create api methods, ex. make model, artisan migrate
+
 <-- run laravel project cloned from github notes here
 
 <-- adding existing repository to github using command line

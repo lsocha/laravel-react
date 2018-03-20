@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Product from './Product';
+import AddProduct from './AddProduct';
 import '../../css/app.css';
  
 /* An example React component */
@@ -17,6 +18,9 @@ class Main extends Component {
         	products: [],
         	currentProduct: null
     	}
+    	// bind the handleProduct method to the class
+    	this.handleAddProduct = this.handleAddProduct.bind(this);
+    	this.handleDelete = this.handleDelete.bind(this);
   	}
 
 	/*componentDidMount() is a lifecycle method
@@ -53,6 +57,47 @@ class Main extends Component {
 	    this.setState({currentProduct:product});  
 	}
 
+	handleAddProduct(product) {
+	   product.price = Number(product.price);
+	   /*Fetch API for post request */
+	   fetch( 'api/products/', {
+	       method:'post',
+	       /* headers are important*/
+	       headers: {
+	         'Accept': 'application/json',
+	         'Content-Type': 'application/json'
+	       },
+	        
+	       body: JSON.stringify(product)
+	   })
+	   .then(response => {
+	       return response.json();
+	   })
+	   .then( data => {
+	       //update the state of products and currentProduct
+	       this.setState((prevState)=> ({
+	           products: prevState.products.concat(data),
+	           currentProduct : data
+	       }))
+	   })
+ 	}
+
+ 	handleDelete() {
+	  const currentProduct = this.state.currentProduct;
+	  fetch( 'api/products/' + this.state.currentProduct.id, 
+	      { method: 'delete' })
+	      .then(response => {
+	        /* Duplicate the array and filter out the item to be deleted */
+	        var array = this.state.products.filter(function(item) {
+	        return item !== currentProduct
+	      });
+	    
+	      this.setState({ products: array, currentProduct: null});
+	 
+	  });
+	}
+
+
 	render() {
 		/* Some css code has been removed for brevity to css/app.css file */
 		return (
@@ -64,7 +109,11 @@ class Main extends Component {
 							{ this.renderProducts() }
 						</ul> 
 					</div> 
-					<Product product={this.state.currentProduct} />
+					<Product 
+						product={this.state.currentProduct}
+						deleteProduct={this.handleDelete} 
+					/>
+					<AddProduct onAdd={this.handleAddProduct} />
 				</div>
 			</div> 
 		);

@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 const Product = ({product}) => {
     
   const divStyle = {
-      /*code omitted for brevity */
       display: 'flex',
       flexDirection: 'column',
       width: '65%',
@@ -28,7 +27,7 @@ const Product = ({product}) => {
  
   //if the props product is null, return Product doesn't exist
   if(!product) {
-    return(<div style={divStyle}>  Product Doesnt exist </div>);
+    return(<div style={divStyle}> No product was selected</div>);
   }
      
   //Else, display the product data
@@ -39,6 +38,7 @@ const Product = ({product}) => {
         <p> {product.description} </p>
         <h4>Status {product.availability ? prodAvailable : prodUnavailable} </h4>
         <h4> Price : {product.price} </h4>
+        <button className="btn btn-danger" value="delete" onClick={e=>handleDeleteConfirmation()}> Delete</button>
       </div>
     </div>
   )
