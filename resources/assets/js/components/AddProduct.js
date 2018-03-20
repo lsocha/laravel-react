@@ -36,6 +36,8 @@ class AddProduct extends Component {
      *state is passed as a param
      */
     this.props.onAdd(this.state.newProduct);
+    // reset form after form is submitted
+    e.target.reset();
   }
  
   render() {

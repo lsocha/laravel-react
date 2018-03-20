@@ -54279,10 +54279,17 @@ var Main = function (_Component) {
 					//this.handleClick() method is invoked onClick.
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'li',
-						{ onClick: function onClick() {
+						{
+							className: 'list-group-item d-flex justify-content-between align-items-center',
+							onClick: function onClick() {
 								return _this3.handleClick(product);
 							}, key: product.id },
-						product.title
+						product.title,
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'span',
+							{ 'class': 'badge badge-primary badge-pill' },
+							product.price
+						)
 					)
 				);
 			});
@@ -54344,6 +54351,34 @@ var Main = function (_Component) {
 			}
 		}
 	}, {
+		key: 'handleUpdate',
+		value: function handleUpdate(product) {
+			var _this6 = this;
+
+			var currentProduct = this.state.currentProduct;
+			fetch('api/products/' + currentProduct.id, {
+				method: 'put',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(product)
+			}).then(function (response) {
+				return response.json();
+			}).then(function (data) {
+				/* Updating the state */
+				var array = _this6.state.products.filter(function (item) {
+					return item !== currentProduct;
+				});
+				_this6.setState(function (prevState) {
+					return {
+						products: array.concat(product),
+						currentProduct: product
+					};
+				});
+			});
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			/* Some css code has been removed for brevity to css/app.css file */
@@ -54352,10 +54387,10 @@ var Main = function (_Component) {
 				null,
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'div',
-					{ className: 'mainDivStyle' },
+					{ className: 'mainDivStyle pull-left' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'div',
-						{ className: 'divStyle' },
+						{ className: 'divStyle pull-left' },
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'h3',
 							null,
@@ -54521,7 +54556,7 @@ exports = module.exports = __webpack_require__(20)(false);
 
 
 // module
-exports.push([module.i, ".mainDivStyle {\r\n\tdisplay: flex;\r\n\tflexDirection: row;\r\n}\r\n    \r\n.divStyle {\r\n\tjustifyContent: flex-start;\r\n\tpadding: 10px;\r\n\twidth: 35%;\r\n\tcursor: pointer;\r\n\tbackground: #f0f0f0;\r\n\tpadding: 20px 20px 20px 20px;\r\n\tmargin: 30px 10px 10px 30px;\r\n}", ""]);
+exports.push([module.i, ".mainDivStyle {\r\n\tdisplay: flex;\r\n\tflexDirection: row;\r\n}\r\n    \r\n.divStyle {\r\n\tjustifyContent: flex-start;\r\n\tpadding: 10px;\r\n\twidth: 35%;\r\n\tcursor: pointer;\r\n\t/*background: #f0f0f0;*/\r\n/*\tpadding: 20px 20px 20px 20px;\r\n\tmargin: 30px 10px 10px 30px;*/\r\n\tpadding: 0px;\r\n\tmargin: 0px;\r\n}\r\n\r\n.list-group-item {\r\n    padding: 0.2rem 0.2rem;\r\n}\r\n\r\nul {\r\n\tpadding: 0;\r\n}", ""]);
 
 // exports
 
@@ -54591,6 +54626,8 @@ var AddProduct = function (_Component) {
        *state is passed as a param
        */
       this.props.onAdd(this.state.newProduct);
+      // reset form after form is submitted
+      e.target.reset();
     }
   }, {
     key: 'render',

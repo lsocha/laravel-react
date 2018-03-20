@@ -46,8 +46,11 @@ class Main extends Component {
 		         * attribute that is unique for each list item
 		        */
 		        //this.handleClick() method is invoked onClick.
-	            <li onClick={() =>this.handleClick(product)} key={product.id} >
-	                { product.title } 
+	            <li 
+	            	className="list-group-item d-flex justify-content-between align-items-center" 
+	            	onClick={() =>this.handleClick(product)} key={product.id} >
+	                { product.title }
+	                <span class="badge badge-primary badge-pill">{product.price}</span> 
 	            </li>      
 		    );
 		})
@@ -104,13 +107,38 @@ class Main extends Component {
 		}
 	}
 
+	handleUpdate(product) {
+		const currentProduct = this.state.currentProduct;
+		fetch( 'api/products/' + currentProduct.id, {
+		    method:'put',
+		    headers: {
+		      'Accept': 'application/json',
+		      'Content-Type': 'application/json'
+		    },
+		    body: JSON.stringify(product)
+		})
+		.then(response => {
+		    return response.json();
+		})
+		.then( data => {
+		    /* Updating the state */
+		    var array = this.state.products.filter(function(item) {
+		      return item !== currentProduct
+		  })
+		    this.setState((prevState)=> ({
+		        products: array.concat(product),
+		        currentProduct : product
+		    }))
+		}) 
+	}
+
 
 	render() {
 		/* Some css code has been removed for brevity to css/app.css file */
 		return (
 			<div>
-				<div className='mainDivStyle'>
-					<div className='divStyle'>
+				<div className='mainDivStyle pull-left'>
+					<div className='divStyle pull-left'>
 						<h3> All products </h3>
 						<ul>
 							{ this.renderProducts() }
