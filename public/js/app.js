@@ -54371,13 +54371,13 @@ var Product = function Product(_ref) {
   //Else, display the product data
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'div',
-    { 'class': 'card', style: divStyle },
+    { className: 'card', style: divStyle },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
-      { 'class': 'card-body' },
+      { className: 'card-body' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'h2',
-        { 'class': 'card-title' },
+        { className: 'card-title' },
         ' ',
         product.title,
         ' '

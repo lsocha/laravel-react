@@ -33,9 +33,9 @@ const Product = ({product}) => {
      
   //Else, display the product data
   return(  
-    <div class="card" style={divStyle}>
-      <div class="card-body"> 
-        <h2 class="card-title"> {product.title} </h2>
+    <div className="card" style={divStyle}>
+      <div className="card-body"> 
+        <h2 className="card-title"> {product.title} </h2>
         <p> {product.description} </p>
         <h4>Status {product.availability ? prodAvailable : prodUnavailable} </h4>
         <h4> Price : {product.price} </h4>

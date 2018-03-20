@@ -17,11 +17,13 @@ class ProductsTableSeeder extends Seeder
         // Create 50 product records
         for ($i = 0; $i < 50; $i++) {
             Product::create([
-                'title' => $faker->title,
+                'title' => $faker->name,
                 'description' => $faker->paragraph,
                 'price' => $faker->randomNumber(2),
                 'availability' => $faker->boolean(50)
             ]);
         }
+        // update title sql
+        // update products set title = concat(title, ' ', SUBSTRING(description, 1, 16));  
     }
 }
