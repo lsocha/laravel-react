@@ -54244,6 +54244,7 @@ var Main = function (_Component) {
 			// bind the handleProduct method to the class
 		};_this.handleAddProduct = _this.handleAddProduct.bind(_this);
 		_this.handleDelete = _this.handleDelete.bind(_this);
+		_this.handleDeleteConfirmation = _this.handleDeleteConfirmation.bind(_this);
 		return _this;
 	}
 
@@ -54336,6 +54337,13 @@ var Main = function (_Component) {
 			});
 		}
 	}, {
+		key: 'handleDeleteConfirmation',
+		value: function handleDeleteConfirmation(event) {
+			if (confirm("Are you sure you want to delete it?")) {
+				this.handleDelete();
+			}
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			/* Some css code has been removed for brevity to css/app.css file */
@@ -54361,7 +54369,8 @@ var Main = function (_Component) {
 					),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Product__["a" /* default */], {
 						product: this.state.currentProduct,
-						deleteProduct: this.handleDelete
+						handleDelete: this.handleDelete,
+						handleDeleteConfirmation: this.handleDeleteConfirmation
 					}),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__AddProduct__["a" /* default */], { onAdd: this.handleAddProduct })
 				)
@@ -54393,8 +54402,14 @@ if (document.getElementById('root')) {
 /* Stateless component or pure component
  * { product } syntax is the object destructing
  */
-var Product = function Product(_ref) {
-  var product = _ref.product;
+
+// why this  changed????
+// const Product = ({product}) => {
+// because earlier we had only one property in Product object product={this.state.currentProduct}, now we have two
+var Product = function Product(props) {
+  var product = props.product,
+      handleDeleteConfirmation = props.handleDeleteConfirmation,
+      handleDelete = props.handleDelete;
 
 
   var divStyle = {
@@ -54414,7 +54429,7 @@ var Product = function Product(_ref) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { style: divStyle },
-      ' No product was selected'
+      'No product was selected.'
     );
   }
 

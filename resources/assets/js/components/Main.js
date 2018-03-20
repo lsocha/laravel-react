@@ -21,6 +21,7 @@ class Main extends Component {
     	// bind the handleProduct method to the class
     	this.handleAddProduct = this.handleAddProduct.bind(this);
     	this.handleDelete = this.handleDelete.bind(this);
+    	this.handleDeleteConfirmation = this.handleDeleteConfirmation.bind(this);
   	}
 
 	/*componentDidMount() is a lifecycle method
@@ -97,6 +98,12 @@ class Main extends Component {
 	  });
 	}
 
+	handleDeleteConfirmation(event) {
+		if (confirm("Are you sure you want to delete it?")) {
+		  this.handleDelete();
+		}
+	}
+
 
 	render() {
 		/* Some css code has been removed for brevity to css/app.css file */
@@ -111,7 +118,8 @@ class Main extends Component {
 					</div> 
 					<Product 
 						product={this.state.currentProduct}
-						deleteProduct={this.handleDelete} 
+						handleDelete={this.handleDelete}
+						handleDeleteConfirmation={this.handleDeleteConfirmation} 
 					/>
 					<AddProduct onAdd={this.handleAddProduct} />
 				</div>

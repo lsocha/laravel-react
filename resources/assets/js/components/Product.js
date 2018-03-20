@@ -3,7 +3,16 @@ import React, { Component } from 'react';
 /* Stateless component or pure component
  * { product } syntax is the object destructing
  */
-const Product = ({product}) => {
+
+// why this  changed????
+// const Product = ({product}) => {
+// because earlier we had only one property in Product object product={this.state.currentProduct}, now we have two
+const Product = props => {
+  const {
+    product,
+    handleDeleteConfirmation,
+    handleDelete
+  } = props;
     
   const divStyle = {
       display: 'flex',
@@ -27,7 +36,7 @@ const Product = ({product}) => {
  
   //if the props product is null, return Product doesn't exist
   if(!product) {
-    return(<div style={divStyle}> No product was selected</div>);
+    return(<div style={divStyle}>No product was selected.</div>);
   }
      
   //Else, display the product data
