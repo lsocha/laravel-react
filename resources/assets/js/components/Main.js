@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Product from './Product';
 import AddProduct from './AddProduct';
+import EditProduct from './EditProduct';
 import '../../css/app.css';
  
 /* An example React component */
@@ -28,9 +29,9 @@ class Main extends Component {
     	this.handleUpdate = this.handleUpdate.bind(this);
   	}
 
-	/*componentDidMount() is a lifecycle method
-	* that gets called after the component is rendered
-	*/
+	/* componentDidMount() is a lifecycle method
+	 * that gets called after the component is rendered
+	 */
 	componentDidMount() {
 		/* fetch API in action */
 		fetch('/api/products')
@@ -135,7 +136,8 @@ class Main extends Component {
 		  })
 		    this.setState((prevState)=> ({
 		        products: array.concat(product),
-		        currentProduct : product
+		        currentProduct : product,
+		        editButtonClicked: false
 		    }))
 		}) 
 	}
@@ -151,14 +153,22 @@ class Main extends Component {
 						<ul>{ this.renderProducts() }</ul> 
 					</div>
 
-					<Product 
-						product={this.state.currentProduct}
-						handleDelete={this.handleDelete}
-						handleDeleteConfirmation={this.handleDeleteConfirmation}
-						handleEdit={this.handleEdit} 
-					/>
-
-					<AddProduct onAdd={this.handleAddProduct} />
+					{this.state.editButtonClicked === true ? (
+            			<EditProduct
+              				product={this.state.currentProduct}
+              				update={this.handleUpdate}
+            			/>
+          			) : (
+          			<React.Fragment>
+						<Product 
+							product={this.state.currentProduct}
+							handleDelete={this.handleDelete}
+							handleDeleteConfirmation={this.handleDeleteConfirmation}
+							handleEdit={this.handleEdit} 
+						/>
+						<AddProduct onAdd={this.handleAddProduct} />
+					</React.Fragment>
+					)}
 				</div>
 			</div> 
 		);

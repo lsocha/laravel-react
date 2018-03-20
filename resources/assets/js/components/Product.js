@@ -11,7 +11,9 @@ const Product = props => {
   const {
     product,
     handleDeleteConfirmation,
-    handleDelete
+    handleDelete,
+    handleEdit,
+    update
   } = props;
     
   const divStyle = {
@@ -47,7 +49,8 @@ const Product = props => {
         <p> {product.description} </p>
         <h4>Status {product.availability ? prodAvailable : prodUnavailable} </h4>
         <h4> Price : {product.price} </h4>
-        <button className="btn btn-danger" value="delete" onClick={e=>handleDeleteConfirmation()}> Delete</button>
+        <input className="btn btn-primary" type="button" value="edit" onClick={e => handleEdit()} />
+        <button className="btn btn-danger float-right" value="delete" onClick={ e => handleDeleteConfirmation()}> Delete</button>
       </div>
     </div>
   )

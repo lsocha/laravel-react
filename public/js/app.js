@@ -54207,8 +54207,9 @@ module.exports = camelize;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Product__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AddProduct__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__css_app_css__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__css_app_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__css_app_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__EditProduct__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__css_app_css__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__css_app_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__css_app_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -54219,6 +54220,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // https://github.com/blizzerand/Laravel5.5_And_React_demo
 // https://github.com/amritms/Laravel5.5_And_React_demo/blob/react-crud/resources/assets/js/components/Main.js
+
 
 
 
@@ -54252,9 +54254,9 @@ var Main = function (_Component) {
 		return _this;
 	}
 
-	/*componentDidMount() is a lifecycle method
- * that gets called after the component is rendered
- */
+	/* componentDidMount() is a lifecycle method
+  * that gets called after the component is rendered
+  */
 
 
 	_createClass(Main, [{
@@ -54382,7 +54384,8 @@ var Main = function (_Component) {
 				_this6.setState(function (prevState) {
 					return {
 						products: array.concat(product),
-						currentProduct: product
+						currentProduct: product,
+						editButtonClicked: false
 					};
 				});
 			});
@@ -54411,13 +54414,20 @@ var Main = function (_Component) {
 							this.renderProducts()
 						)
 					),
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Product__["a" /* default */], {
+					this.state.editButtonClicked === true ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__EditProduct__["a" /* default */], {
 						product: this.state.currentProduct,
-						handleDelete: this.handleDelete,
-						handleDeleteConfirmation: this.handleDeleteConfirmation,
-						handleEdit: this.handleEdit
-					}),
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__AddProduct__["a" /* default */], { onAdd: this.handleAddProduct })
+						update: this.handleUpdate
+					}) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.Fragment,
+						null,
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Product__["a" /* default */], {
+							product: this.state.currentProduct,
+							handleDelete: this.handleDelete,
+							handleDeleteConfirmation: this.handleDeleteConfirmation,
+							handleEdit: this.handleEdit
+						}),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__AddProduct__["a" /* default */], { onAdd: this.handleAddProduct })
+					)
 				)
 			);
 		}
@@ -54454,7 +54464,9 @@ if (document.getElementById('root')) {
 var Product = function Product(props) {
   var product = props.product,
       handleDeleteConfirmation = props.handleDeleteConfirmation,
-      handleDelete = props.handleDelete;
+      handleDelete = props.handleDelete,
+      handleEdit = props.handleEdit,
+      update = props.update;
 
 
   var divStyle = {
@@ -54513,9 +54525,12 @@ var Product = function Product(props) {
         product.price,
         ' '
       ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'btn btn-primary', type: 'button', value: 'edit', onClick: function onClick(e) {
+          return handleEdit();
+        } }),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'button',
-        { className: 'btn btn-danger', value: 'delete', onClick: function onClick(e) {
+        { className: 'btn btn-danger float-right', value: 'delete', onClick: function onClick(e) {
             return handleDeleteConfirmation();
           } },
         ' Delete'
@@ -54717,6 +54732,143 @@ var AddProduct = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (AddProduct);
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var EditProduct = function (_Component) {
+  _inherits(EditProduct, _Component);
+
+  function EditProduct(props) {
+    _classCallCheck(this, EditProduct);
+
+    var _this = _possibleConstructorReturn(this, (EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call(this, props));
+
+    _this.state = {
+      product: null
+    };
+
+    _this.handleInput = _this.handleInput.bind(_this);
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    return _this;
+  }
+
+  /*
+   *componentWillMount() is invoked just before mounting occurs. It is called before render(), therefore calling 
+   *setState() synchronously in this method will not trigger an extra rendering. Generally, we recommend using the constructor() instead.
+   */
+
+
+  _createClass(EditProduct, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.setState({ product: this.props.product });
+    }
+  }, {
+    key: 'handleInput',
+    value: function handleInput(key, e) {
+      var state = Object.assign({}, this.state.product);
+      state[key] = e.target.value;
+      this.setState({ product: state });
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.update(this.state.product);
+      this.editForm.reset();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var divStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '65%',
+        margin: '30px 10px 10px 30px',
+        height: '100%'
+      };
+      var product = this.state.product;
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'card', style: divStyle },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'card-body' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'h2',
+            null,
+            ' Edit product '
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'form',
+            { onSubmit: this.handleSubmit, ref: function ref(input) {
+                return _this2.editForm = input;
+              } },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'form-group' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'label',
+                null,
+                ' Title: '
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', value: product.title, className: 'form-control', onChange: function onChange(e) {
+                  return _this2.handleInput('title', e);
+                }, required: true })
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'form-group' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'label',
+                null,
+                ' Description: '
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', value: product.description, className: 'form-control', onChange: function onChange(e) {
+                  return _this2.handleInput('description', e);
+                }, required: true })
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'form-group' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'label',
+                null,
+                ' Price: '
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', value: product.price, className: 'form-control', onChange: function onChange(e) {
+                  return _this2.handleInput('price', e);
+                }, required: true })
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', className: 'btn btn-primary float-right', value: 'Save' })
+          )
+        )
+      );
+    }
+  }]);
+
+  return EditProduct;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (EditProduct);
 
 /***/ })
 /******/ ]);
