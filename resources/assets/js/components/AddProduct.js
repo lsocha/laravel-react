@@ -69,7 +69,7 @@ class AddProduct extends Component {
             
             <div className="form-group">
               <label> Description: </label>
-              <input type="text" className="form-control" onChange={(e)=>this.handleInput('description',e)} required />
+              <textarea className="form-control" onChange={(e)=>this.handleInput('description',e)} rows="5" required></textarea>
             </div>
 
             <div className="form-group">

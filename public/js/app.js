@@ -54705,9 +54705,9 @@ var AddProduct = function (_Component) {
                 null,
                 ' Description: '
               ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', onChange: function onChange(e) {
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { className: 'form-control', onChange: function onChange(e) {
                   return _this2.handleInput('description', e);
-                }, required: true })
+                }, rows: '5', required: true })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
@@ -54842,9 +54842,9 @@ var EditProduct = function (_Component) {
                 null,
                 ' Description: '
               ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', value: product.description, className: 'form-control', onChange: function onChange(e) {
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { value: product.description, className: 'form-control', onChange: function onChange(e) {
                   return _this2.handleInput('description', e);
-                }, required: true })
+                }, rows: '5', required: true })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
