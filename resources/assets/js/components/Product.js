@@ -10,8 +10,21 @@ const Product = ({product}) => {
       display: 'flex',
       flexDirection: 'column',
       width: '65%',
-      margin: '30px 10px 10px 30px'
+      margin: '30px 10px 10px 30px',
+      height: '100%'
   }
+
+  var prodAvailable = React.createElement(
+    'span',
+    {className: 'badge badge-success'},
+    'Available'
+  );
+
+  var prodUnavailable = React.createElement(
+    'span',
+    {className: 'badge badge-danger'},
+    'Out of stock'
+  );
  
   //if the props product is null, return Product doesn't exist
   if(!product) {
@@ -20,12 +33,13 @@ const Product = ({product}) => {
      
   //Else, display the product data
   return(  
-    <div style={divStyle}> 
-      <h2> {product.title} </h2>
-      <p> {product.description} </p>
-      <h3> Status {product.availability ? 'Available' : 'Out of stock'} </h3>
-      <h3> Price : {product.price} </h3>
-      
+    <div class="card" style={divStyle}>
+      <div class="card-body"> 
+        <h2 class="card-title"> {product.title} </h2>
+        <p> {product.description} </p>
+        <h4>Status {product.availability ? prodAvailable : prodUnavailable} </h4>
+        <h4> Price : {product.price} </h4>
+      </div>
     </div>
   )
 }

@@ -54351,10 +54351,16 @@ var Product = function Product(_ref) {
     display: 'flex',
     flexDirection: 'column',
     width: '65%',
-    margin: '30px 10px 10px 30px'
+    margin: '30px 10px 10px 30px',
+    height: '100%'
+  };
 
-    //if the props product is null, return Product doesn't exist
-  };if (!product) {
+  var prodAvailable = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'badge badge-success' }, 'Available');
+
+  var prodUnavailable = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'badge badge-danger' }, 'Out of stock');
+
+  //if the props product is null, return Product doesn't exist
+  if (!product) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { style: divStyle },
@@ -54365,34 +54371,38 @@ var Product = function Product(_ref) {
   //Else, display the product data
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'div',
-    { style: divStyle },
+    { 'class': 'card', style: divStyle },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'h2',
-      null,
-      ' ',
-      product.title,
-      ' '
-    ),
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'p',
-      null,
-      ' ',
-      product.description,
-      ' '
-    ),
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'h3',
-      null,
-      ' Status ',
-      product.availability ? 'Available' : 'Out of stock',
-      ' '
-    ),
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'h3',
-      null,
-      ' Price : ',
-      product.price,
-      ' '
+      'div',
+      { 'class': 'card-body' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'h2',
+        { 'class': 'card-title' },
+        ' ',
+        product.title,
+        ' '
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'p',
+        null,
+        ' ',
+        product.description,
+        ' '
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'h4',
+        null,
+        'Status ',
+        product.availability ? prodAvailable : prodUnavailable,
+        ' '
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'h4',
+        null,
+        ' Price : ',
+        product.price,
+        ' '
+      )
     )
   );
 };
