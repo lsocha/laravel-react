@@ -54206,9 +54206,9 @@ module.exports = camelize;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Product__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AddProduct__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__EditProduct__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__css_app_css__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AddProduct__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__EditProduct__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__css_app_css__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__css_app_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__css_app_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -54251,6 +54251,7 @@ var Main = function (_Component) {
 		_this.handleDeleteConfirmation = _this.handleDeleteConfirmation.bind(_this);
 		_this.handleEdit = _this.handleEdit.bind(_this);
 		_this.handleUpdate = _this.handleUpdate.bind(_this);
+		_this.handleReturn = _this.handleReturn.bind(_this);
 		return _this;
 	}
 
@@ -54391,6 +54392,11 @@ var Main = function (_Component) {
 			});
 		}
 	}, {
+		key: 'handleReturn',
+		value: function handleReturn() {
+			this.setState({ editButtonClicked: false });
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			/* Some css code has been removed for brevity to css/app.css file */
@@ -54416,7 +54422,8 @@ var Main = function (_Component) {
 					),
 					this.state.editButtonClicked === true ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__EditProduct__["a" /* default */], {
 						product: this.state.currentProduct,
-						update: this.handleUpdate
+						update: this.handleUpdate,
+						handleReturn: this.handleReturn
 					}) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.Fragment,
 						null,
@@ -54425,6 +54432,7 @@ var Main = function (_Component) {
 							handleDelete: this.handleDelete,
 							handleDeleteConfirmation: this.handleDeleteConfirmation,
 							handleEdit: this.handleEdit
+							// handleReturn={this.handleReturn} 
 						}),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__AddProduct__["a" /* default */], { onAdd: this.handleAddProduct })
 					)
@@ -54543,52 +54551,6 @@ var Product = function Product(props) {
 
 /***/ }),
 /* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(68);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(21)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./app.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./app.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(20)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".mainDivStyle {\r\n\tdisplay: flex;\r\n\tflexDirection: row;\r\n}\r\n    \r\n.divStyle {\r\n\tjustifyContent: flex-start;\r\n\tpadding: 10px;\r\n\twidth: 35%;\r\n\tcursor: pointer;\r\n\t/*background: #f0f0f0;*/\r\n/*\tpadding: 20px 20px 20px 20px;\r\n\tmargin: 30px 10px 10px 30px;*/\r\n\tpadding: 0px;\r\n\tmargin: 0px;\r\n}\r\n\r\n.list-group-item {\r\n    padding: 0.2rem 0.2rem;\r\n}\r\n\r\nul {\r\n\tpadding: 0;\r\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 69 */,
-/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54734,7 +54696,7 @@ var AddProduct = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (AddProduct);
 
 /***/ }),
-/* 71 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54756,6 +54718,7 @@ var EditProduct = function (_Component) {
   function EditProduct(props) {
     _classCallCheck(this, EditProduct);
 
+    // console.log(this.props);
     var _this = _possibleConstructorReturn(this, (EditProduct.__proto__ || Object.getPrototypeOf(EditProduct)).call(this, props));
 
     _this.state = {
@@ -54764,6 +54727,7 @@ var EditProduct = function (_Component) {
 
     _this.handleInput = _this.handleInput.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    // this.handleReturn = this.handleReturn.bind(this);
     return _this;
   }
 
@@ -54776,7 +54740,7 @@ var EditProduct = function (_Component) {
   _createClass(EditProduct, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.setState({ product: this.props.product });
+      this.setState({ product: this.props.product, editButtonClicked: this.props.editButtonClicked });
     }
   }, {
     key: 'handleInput',
@@ -54858,7 +54822,14 @@ var EditProduct = function (_Component) {
                   return _this2.handleInput('price', e);
                 }, required: true })
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', className: 'btn btn-primary float-right', value: 'Save' })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', className: 'btn btn-primary float-right', value: 'Save' }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'button',
+              { type: 'button', className: 'btn btn-default float-left', onClick: function onClick(e) {
+                  return _this2.props.handleReturn();
+                } },
+              'Return'
+            )
           )
         )
       );
@@ -54869,6 +54840,51 @@ var EditProduct = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (EditProduct);
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(70);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(21)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./app.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./app.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(20)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".mainDivStyle {\r\n\tdisplay: flex;\r\n\tflexDirection: row;\r\n}\r\n    \r\n.divStyle {\r\n\tjustifyContent: flex-start;\r\n\tpadding: 10px;\r\n\twidth: 35%;\r\n\tcursor: pointer;\r\n\t/*background: #f0f0f0;*/\r\n/*\tpadding: 20px 20px 20px 20px;\r\n\tmargin: 30px 10px 10px 30px;*/\r\n\tpadding: 0px;\r\n\tmargin: 0px;\r\n}\r\n\r\n.list-group-item {\r\n    padding: 0.2rem 0.2rem;\r\n}\r\n\r\nul {\r\n\tpadding: 0;\r\n}", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

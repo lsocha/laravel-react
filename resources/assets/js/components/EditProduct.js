@@ -3,12 +3,14 @@ import React, { Component } from "react";
 class EditProduct extends Component {
   constructor(props) {
     super(props);
+    // console.log(this.props);
     this.state = {
       product: null
     };
 
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleReturn = this.handleReturn.bind(this);
   }
 
   /*
@@ -16,7 +18,7 @@ class EditProduct extends Component {
    *setState() synchronously in this method will not trigger an extra rendering. Generally, we recommend using the constructor() instead.
    */
   componentWillMount() {
-    this.setState({ product: this.props.product });
+    this.setState({ product: this.props.product, editButtonClicked: this.props.editButtonClicked });
   }
 
   handleInput(key, e) {
@@ -63,6 +65,7 @@ class EditProduct extends Component {
             </div>
 
             <input type="submit" className="btn btn-primary float-right" value="Save" />
+            <button type="button" className="btn btn-default float-left" onClick={(e)=>this.props.handleReturn()}>Return</button>
 
           </form>
         </div>

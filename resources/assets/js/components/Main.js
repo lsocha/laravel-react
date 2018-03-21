@@ -27,6 +27,7 @@ class Main extends Component {
     	this.handleDeleteConfirmation = this.handleDeleteConfirmation.bind(this);
     	this.handleEdit = this.handleEdit.bind(this);
     	this.handleUpdate = this.handleUpdate.bind(this);
+    	this.handleReturn = this.handleReturn.bind(this);
   	}
 
 	/* componentDidMount() is a lifecycle method
@@ -142,6 +143,10 @@ class Main extends Component {
 		}) 
 	}
 
+	handleReturn() {
+		this.setState({ editButtonClicked: false });
+	}
+
 
 	render() {
 		/* Some css code has been removed for brevity to css/app.css file */
@@ -157,6 +162,7 @@ class Main extends Component {
             			<EditProduct
               				product={this.state.currentProduct}
               				update={this.handleUpdate}
+              				handleReturn={this.handleReturn}
             			/>
           			) : (
           			<React.Fragment>
@@ -164,7 +170,8 @@ class Main extends Component {
 							product={this.state.currentProduct}
 							handleDelete={this.handleDelete}
 							handleDeleteConfirmation={this.handleDeleteConfirmation}
-							handleEdit={this.handleEdit} 
+							handleEdit={this.handleEdit}
+							// handleReturn={this.handleReturn} 
 						/>
 						<AddProduct onAdd={this.handleAddProduct} />
 					</React.Fragment>
