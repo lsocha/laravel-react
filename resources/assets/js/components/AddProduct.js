@@ -4,13 +4,13 @@ class AddProduct extends Component {
  
   constructor(props) {
     super(props);
-       /* Initialize the state. */
+       /* Initialize the state. This is default state for new product. */
        this.state = {
           newProduct: {
               title: '',
               description: '',
               price: 0,
-              availability: 0
+              availability: 1
           }
         }
      

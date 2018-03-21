@@ -54498,10 +54498,13 @@ var Product = function Product(props) {
     );
   }
 
-  //Else, display the product data
+  // Else, display the product data
+  // Added edit product on double click on card.
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'div',
-    { className: 'card', style: divStyle },
+    { className: 'card', style: divStyle, onDoubleClick: function onDoubleClick(e) {
+        return handleEdit();
+      } },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { className: 'card-body' },
@@ -54572,7 +54575,7 @@ var AddProduct = function (_Component) {
   function AddProduct(props) {
     _classCallCheck(this, AddProduct);
 
-    /* Initialize the state. */
+    /* Initialize the state. This is default state for new product. */
     var _this = _possibleConstructorReturn(this, (AddProduct.__proto__ || Object.getPrototypeOf(AddProduct)).call(this, props));
 
     _this.state = {
@@ -54580,7 +54583,7 @@ var AddProduct = function (_Component) {
         title: '',
         description: '',
         price: 0,
-        availability: 0
+        availability: 1
       }
 
       //Boilerplate code for binding methods with `this`

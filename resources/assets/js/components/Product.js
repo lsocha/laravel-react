@@ -41,9 +41,10 @@ const Product = props => {
     return(<div style={divStyle}>No product was selected.</div>);
   }
      
-  //Else, display the product data
+  // Else, display the product data
+  // Added edit product on double click on card.
   return(  
-    <div className="card" style={divStyle}>
+    <div className="card" style={divStyle} onDoubleClick={e => handleEdit()}>
       <div className="card-body"> 
         <h2 className="card-title"> {product.title} </h2>
         <p> {product.description} </p>
