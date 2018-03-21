@@ -54306,6 +54306,7 @@ var Main = function (_Component) {
 		value: function handleClick(product) {
 			//handleClick is used to set the state
 			this.setState({ currentProduct: product });
+			window.scrollTo(0, 0);
 		}
 	}, {
 		key: 'handleAddProduct',
@@ -54645,7 +54646,7 @@ var AddProduct = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'h2',
             null,
-            ' Add new product '
+            ' Add new '
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'form',

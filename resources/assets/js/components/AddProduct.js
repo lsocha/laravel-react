@@ -56,7 +56,7 @@ class AddProduct extends Component {
     return(
       <div className="card" style={divStyle}>
         <div className="card-body">  
-          <h2> Add new product </h2>
+          <h2> Add new </h2>
           {/*when Submit button is pressed, the control is passed to 
            * handleSubmit method 
            */}
