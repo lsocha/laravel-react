@@ -6,6 +6,8 @@ import Product from './Product';
 import AddProduct from './AddProduct';
 import EditProduct from './EditProduct';
 import '../../css/app.css';
+
+import { StickyContainer, Sticky } from 'react-sticky';
  
 /* An example React component */
 class Main extends Component {
@@ -151,10 +153,16 @@ class Main extends Component {
 
 	render() {
 		/* Some css code has been removed for brevity to css/app.css file */
+		
 		return (
 			<div>
 				<div className='mainDivStyle pull-left'>
-					<div className='divStyle col-sm-2 pull-left'>
+					<div className='divStyle col-sm-2 pull-left'
+						style={{
+				          height: '100vh',
+				          overflow: "auto",
+				        }}
+					>
 						<h3> All products </h3>
 						<ul>{ this.renderProducts() }</ul> 
 					</div>
@@ -172,7 +180,6 @@ class Main extends Component {
 							handleDelete={this.handleDelete}
 							handleDeleteConfirmation={this.handleDeleteConfirmation}
 							handleEdit={this.handleEdit}
-							// handleReturn={this.handleReturn} 
 						/>
 						<AddProduct onAdd={this.handleAddProduct} />
 					</React.Fragment>
@@ -180,10 +187,88 @@ class Main extends Component {
 				</div>
 			</div> 
 		);
+		
+		
+		// return (
+  //       <div className='mainDivStyle pull-left'>
+		// 	<div className='divStyle col-sm-2 pull-left'
+		// 		style={{
+  //         ...this.props.style,
+  //         height: '100vh',
+  //         overflow: "auto",
+  //         background: "#aaa"
+  //       }}
+		// 	>
+		// 		<h3> All products </h3>
+		// 		<ul>{ this.renderProducts() }</ul> 
+		// 	</div>
+	 //        <StickyContainer>
+	 //          <Sticky>
+	 //            {({
+	 //              isSticky,
+	 //              wasSticky,
+	 //              style,
+	 //              distanceFromTop,
+	 //              distanceFromBottom,
+	 //              calculatedHeight
+	 //            }) => {
+	 //              console.log({
+	 //                isSticky,
+	 //                wasSticky,
+	 //                style,
+	 //                distanceFromTop,
+	 //                distanceFromBottom,
+	 //                calculatedHeight
+	 //              });
+	 //              return <AddProduct onAdd={this.handleAddProduct} />;
+	 //            }}
+	 //          </Sticky>
+	 //        </StickyContainer>
+  //       </div>
+  //   );
+
+
 	}
 }
  
 export default Main;
+
+class Document extends Main {
+  render() {
+    return (
+      <div>
+        <h2>Content before the Sticky...</h2>
+        <StickyContainer>
+          <Sticky>
+            {({
+              isSticky,
+              wasSticky,
+              style,
+              distanceFromTop,
+              distanceFromBottom,
+              calculatedHeight
+            }) => {
+              console.log({
+                isSticky,
+                wasSticky,
+                style,
+                distanceFromTop,
+                distanceFromBottom,
+                calculatedHeight
+              });
+              return <AddProduct />;
+            }}
+          </Sticky>
+
+          <h2 className="text-center" style={{ marginTop: 150 }}>
+            &lt;StickyContainer /&gt;
+          </h2>
+        </StickyContainer>
+        <h2>Content after the Sticky...</h2>
+      </div>
+    );
+  }
+}
  
 /* The if statement is required so as to Render the component on pages that have a div with an ID of "root";  
 */
