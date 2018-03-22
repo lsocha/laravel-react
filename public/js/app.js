@@ -53897,7 +53897,7 @@ var Main = function (_Component) {
 				{ className: 'container col-sm-12' },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'button',
-					{ type: 'button', 'class': 'btn btn-success', onClick: function onClick(e) {
+					{ type: 'button', className: 'btn btn-success', onClick: function onClick(e) {
 							return _this7.handleAdd();
 						} },
 					'Add new'
@@ -53907,19 +53907,23 @@ var Main = function (_Component) {
 					{ className: 'mainDivStyle row col-sm-12' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'div',
-						{ className: 'divStyle col-sm-2 pull-left',
-							style: {
-								height: '90vh',
-								overflow: "auto"
-							}
-						},
+						{ className: 'col-sm-12 float-left', style: { padding: 0 } },
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
 							type: 'text',
-							className: 'form-control',
+							className: 'form-control col-sm-3',
 							value: this.state.search,
 							onChange: this.updateSearch.bind(this)
-						}),
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+						})
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'divStyle col-sm-3 pull-left',
+							style: {
+								height: '85vh',
+								overflow: "auto",
+								padding: '0'
+							}
+						},
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'ul',
 							null,
@@ -54034,7 +54038,7 @@ var Product = function Product(props) {
         'h4',
         null,
         'Status ',
-        product.availability ? prodAvailable : prodUnavailable,
+        parseInt(product.availability) ? prodAvailable : prodUnavailable,
         ' '
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -54194,6 +54198,31 @@ var AddProduct = function (_Component) {
                   return _this2.handleInput('price', e);
                 }, required: true })
             ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'form-group' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'label',
+                null,
+                'Status'
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'select',
+                { className: 'form-control', onChange: function onChange(e) {
+                    return _this2.handleInput('availability', e);
+                  } },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'option',
+                  { value: '1' },
+                  'In stock'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'option',
+                  { value: '0' },
+                  'Out of stock'
+                )
+              )
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', className: 'btn btn-primary float-right', value: 'Submit' }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'button',
@@ -54266,12 +54295,14 @@ var EditProduct = function (_Component) {
       var state = Object.assign({}, this.state.product);
       state[key] = e.target.value;
       this.setState({ product: state });
+      console.log(state);
     }
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
       this.props.update(this.state.product);
+      console.log(this.state.product);
       this.editForm.reset();
     }
   }, {
@@ -54339,6 +54370,31 @@ var EditProduct = function (_Component) {
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', value: product.price, className: 'form-control', onChange: function onChange(e) {
                   return _this2.handleInput('price', e);
                 }, required: true })
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'form-group' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'label',
+                null,
+                'Status'
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'select',
+                { className: 'form-control', value: product.availability, onChange: function onChange(e) {
+                    return _this2.handleInput('availability', e);
+                  } },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'option',
+                  { value: '1' },
+                  'In stock'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'option',
+                  { value: '0' },
+                  'Out of stock'
+                )
+              )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', className: 'btn btn-primary float-right', value: 'Save' }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

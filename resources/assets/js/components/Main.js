@@ -173,22 +173,24 @@ class Main extends Component {
 		);		
 		return (
 			<div className="container col-sm-12">
-				<button type="button" class="btn btn-success" onClick={e => this.handleAdd()}>Add new</button>
-
+				<button type="button" className="btn btn-success" onClick={e => this.handleAdd()}>Add new</button>
+				
 				<div className='mainDivStyle row col-sm-12'>
-					<div className='divStyle col-sm-2 pull-left'
+					<div className='col-sm-12 float-left' style={{padding: 0}}>
+					<input 
+						type="text"
+						className="form-control col-sm-3"
+						value={this.state.search}
+						onChange={this.updateSearch.bind(this)} 
+					/>
+					</div>
+					<div className='divStyle col-sm-3 pull-left'
 						style={{
-				          height: '90vh',
+				          height: '85vh',
 				          overflow: "auto",
+				          padding: '0'
 				        }}
 					>
-						<input 
-							type="text"
-							className="form-control"
-							value={this.state.search}
-							onChange={this.updateSearch.bind(this)} 
-						/>
-						<br/>
 						<ul>{ this.renderProducts(filteredProducts) }</ul> 
 					</div>
 

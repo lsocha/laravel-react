@@ -8,7 +8,9 @@
         <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
     </head>
     <body>
-    <h2 style="text-align: center"> Laravel and React application </h2>
+        <nav class="navbar navbar-light bg-light">
+          <h2 style="text-align: center"> Laravel and React application </h2>
+        </nav>
         <div id="root"></div>
         <script src="{{mix('js/app.js')}}" ></script>
     </body>
