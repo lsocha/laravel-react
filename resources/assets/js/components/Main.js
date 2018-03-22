@@ -91,7 +91,8 @@ class Main extends Component {
 	       //update the state of products and currentProduct
 	       this.setState((prevState)=> ({
 	           products: prevState.products.concat(data),
-	           currentProduct : data
+	           currentProduct : data,
+	           addButtonClicked: false
 	       }))
 	   })
  	}

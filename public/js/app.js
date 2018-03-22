@@ -53799,7 +53799,8 @@ var Main = function (_Component) {
 				_this4.setState(function (prevState) {
 					return {
 						products: prevState.products.concat(data),
-						currentProduct: data
+						currentProduct: data,
+						addButtonClicked: false
 					};
 				});
 			});
