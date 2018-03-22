@@ -172,7 +172,7 @@ class Main extends Component {
 		);		
 		return (
 			<div className="container col-sm-12">
-				<button type="button" class="btn btn-success" onClick={e => this.handleAdd()}>Add new</button>
+				<button type="button" className="btn btn-success" onClick={e => this.handleAdd()}>Add new</button>
 
 				<div className='mainDivStyle row col-sm-12'>
 					<div className='divStyle col-sm-2 pull-left'

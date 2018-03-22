@@ -53896,7 +53896,7 @@ var Main = function (_Component) {
 				{ className: 'container col-sm-12' },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'button',
-					{ type: 'button', 'class': 'btn btn-success', onClick: function onClick(e) {
+					{ type: 'button', className: 'btn btn-success', onClick: function onClick(e) {
 							return _this7.handleAdd();
 						} },
 					'Add new'

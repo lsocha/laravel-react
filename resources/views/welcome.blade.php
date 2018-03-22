@@ -1,4 +1,7 @@
-<!doctype html>
+@extends('layouts.app')
+
+@section('content')
+<!-- <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
@@ -7,9 +10,10 @@
         <title>Laravel React application</title>
         <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
     </head>
-    <body>
+    <body> -->
     <h2 style="text-align: center"> Laravel and React application </h2>
         <div id="root"></div>
         <script src="{{mix('js/app.js')}}" ></script>
-    </body>
-</html>
+<!--     </body>
+</html> -->
+@endsection
