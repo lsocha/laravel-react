@@ -37,14 +37,14 @@ class EditProduct extends Component {
     const divStyle = {
       display: 'flex',
       flexDirection: 'column',
-      width: '65%',
-      margin: '30px 10px 10px 30px',
+      // width: '65%',
+      // margin: '0px 10px 10px 30px',
       height: '100%'
     }
     const product = this.state.product;
 
     return (
-      <div className="card" style={divStyle}>
+      <div className="card col-sm-9" style={divStyle}>
         <div className="card-body">  
           <h2> Edit product </h2>
           <form onSubmit={this.handleSubmit} ref={input => (this.editForm = input)}>

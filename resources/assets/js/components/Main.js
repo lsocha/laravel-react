@@ -7,8 +7,6 @@ import AddProduct from './AddProduct';
 import EditProduct from './EditProduct';
 import '../../css/app.css';
 
-import { StickyContainer, Sticky } from 'react-sticky';
- 
 /* An example React component */
 class Main extends Component {
 
@@ -21,8 +19,10 @@ class Main extends Component {
     	this.state = {
         	products: [],
         	currentProduct: null,
-        	editButtonClicked: false
-    	}
+        	editButtonClicked: false,
+        	addButtonClicked: false,
+        	search: ''
+    	};
     	// bind the handleProduct method to the class
     	this.handleAddProduct = this.handleAddProduct.bind(this);
     	this.handleDelete = this.handleDelete.bind(this);
@@ -47,8 +47,10 @@ class Main extends Component {
 		    });
 	}
  
-	renderProducts() {
-		return this.state.products.map(product => {
+	renderProducts(filteredProducts) {
+		// przed filtrowaniem bez argumentu
+		// return this.state.products.map(product => {
+		return filteredProducts.map(product => {
 		    return (
 		        /* When using list you need to specify a key
 		         * attribute that is unique for each list item
@@ -58,7 +60,7 @@ class Main extends Component {
 	            	className="list-group-item d-flex justify-content-between align-items-center" 
 	            	onClick={() =>this.handleClick(product)} key={product.id} >
 	                { product.title }
-	                <span class="badge badge-primary badge-pill">{product.price}</span> 
+	                <span className="badge badge-primary badge-pill">{product.price}</span> 
 	            </li>      
 		    );
 		})
@@ -80,7 +82,6 @@ class Main extends Component {
 	         'Accept': 'application/json',
 	         'Content-Type': 'application/json'
 	       },
-	        
 	       body: JSON.stringify(product)
 	   })
 	   .then(response => {
@@ -147,25 +148,50 @@ class Main extends Component {
 	}
 
 	handleReturn() {
-		this.setState({ editButtonClicked: false });
+		this.setState({ editButtonClicked: false, addButtonClicked: false });
+	}
+
+	// filtering
+	updateSearch(event) {
+		this.setState({search: event.target.value.substr(0,20)});
+	}
+
+	// handleAdd
+	handleAdd() {
+		this.setState({ addButtonClicked: true });
 	}
 
 
 	render() {
-		/* Some css code has been removed for brevity to css/app.css file */
-		
+		// let - visible in the nearst code block
+		// var - visible globally
+		let filteredProducts = this.state.products.filter(
+			(product) => {
+				return product.title.toLowerCase().indexOf(this.state.search) !== -1;
+			}
+		);		
 		return (
-			<div>
-				<div className='mainDivStyle pull-left'>
+			<div className="container col-sm-12">
+				<button type="button" class="btn btn-success" onClick={e => this.handleAdd()}>Add new</button>
+
+				<div className='mainDivStyle row col-sm-12'>
 					<div className='divStyle col-sm-2 pull-left'
 						style={{
-				          height: '100vh',
+				          height: '90vh',
 				          overflow: "auto",
 				        }}
 					>
-						<h3> All products </h3>
-						<ul>{ this.renderProducts() }</ul> 
+						<input 
+							type="text"
+							className="form-control"
+							value={this.state.search}
+							onChange={this.updateSearch.bind(this)} 
+						/>
+						<br/>
+						<ul>{ this.renderProducts(filteredProducts) }</ul> 
 					</div>
+
+					
 
 					{this.state.editButtonClicked === true ? (
             			<EditProduct
@@ -174,101 +200,31 @@ class Main extends Component {
               				handleReturn={this.handleReturn}
             			/>
           			) : (
-          			<React.Fragment>
-						<Product 
-							product={this.state.currentProduct}
-							handleDelete={this.handleDelete}
-							handleDeleteConfirmation={this.handleDeleteConfirmation}
-							handleEdit={this.handleEdit}
-						/>
-						<AddProduct onAdd={this.handleAddProduct} />
-					</React.Fragment>
+          				<React.Fragment>
+          				{this.state.addButtonClicked === true &&
+							<AddProduct 
+								onAdd={this.handleAddProduct}
+								handleReturn={this.handleReturn}
+							/>
+	          			}
+	          			{this.state.addButtonClicked === false &&
+							<Product 
+								product={this.state.currentProduct}
+								handleDelete={this.handleDelete}
+								handleDeleteConfirmation={this.handleDeleteConfirmation}
+								handleEdit={this.handleEdit}
+							/>
+						}
+						</React.Fragment>
 					)}
+
 				</div>
 			</div> 
 		);
-		
-		
-		// return (
-  //       <div className='mainDivStyle pull-left'>
-		// 	<div className='divStyle col-sm-2 pull-left'
-		// 		style={{
-  //         ...this.props.style,
-  //         height: '100vh',
-  //         overflow: "auto",
-  //         background: "#aaa"
-  //       }}
-		// 	>
-		// 		<h3> All products </h3>
-		// 		<ul>{ this.renderProducts() }</ul> 
-		// 	</div>
-	 //        <StickyContainer>
-	 //          <Sticky>
-	 //            {({
-	 //              isSticky,
-	 //              wasSticky,
-	 //              style,
-	 //              distanceFromTop,
-	 //              distanceFromBottom,
-	 //              calculatedHeight
-	 //            }) => {
-	 //              console.log({
-	 //                isSticky,
-	 //                wasSticky,
-	 //                style,
-	 //                distanceFromTop,
-	 //                distanceFromBottom,
-	 //                calculatedHeight
-	 //              });
-	 //              return <AddProduct onAdd={this.handleAddProduct} />;
-	 //            }}
-	 //          </Sticky>
-	 //        </StickyContainer>
-  //       </div>
-  //   );
-
-
 	}
 }
  
 export default Main;
-
-class Document extends Main {
-  render() {
-    return (
-      <div>
-        <h2>Content before the Sticky...</h2>
-        <StickyContainer>
-          <Sticky>
-            {({
-              isSticky,
-              wasSticky,
-              style,
-              distanceFromTop,
-              distanceFromBottom,
-              calculatedHeight
-            }) => {
-              console.log({
-                isSticky,
-                wasSticky,
-                style,
-                distanceFromTop,
-                distanceFromBottom,
-                calculatedHeight
-              });
-              return <AddProduct />;
-            }}
-          </Sticky>
-
-          <h2 className="text-center" style={{ marginTop: 150 }}>
-            &lt;StickyContainer /&gt;
-          </h2>
-        </StickyContainer>
-        <h2>Content after the Sticky...</h2>
-      </div>
-    );
-  }
-}
  
 /* The if statement is required so as to Render the component on pages that have a div with an ID of "root";  
 */

@@ -44,17 +44,17 @@ class AddProduct extends Component {
     const divStyle = {
       display: 'flex',
       flexDirection: 'column',
-      width: '65%',
-      margin: '30px 10px 10px 30px',
+      // width: '65%',
+      // margin: '0px 10px 10px 30px',
       height: '100%'
     }
     
     const inputStyle = {
-      margin: '0px 10px 0px 10px'
+      margin: '0px 10px 10px 30px'
     }
      
     return(
-      <div className="card" style={divStyle}>
+      <div className="card col-sm-9" style={divStyle}>
         <div className="card-body">  
           <h2> Add new </h2>
           {/*when Submit button is pressed, the control is passed to 
@@ -83,7 +83,8 @@ class AddProduct extends Component {
             </div>*/}
              
            { /* Input fields for Price and availability omitted for brevity */}
-            <input type="submit" className="btn btn-primary" value="Submit" />
+            <input type="submit" className="btn btn-primary float-right" value="Submit" />
+            <button type="button" className="btn btn-default float-left" onClick={(e)=>this.props.handleReturn()}>Return</button>
           </form>
         </div>
     </div>)

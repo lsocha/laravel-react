@@ -19,8 +19,8 @@ const Product = props => {
   const divStyle = {
       display: 'flex',
       flexDirection: 'column',
-      width: '65%',
-      margin: '30px 10px 10px 30px',
+      // width: '65%',
+      // margin: '0px 10px 10px 30px',
       height: '100%'
   }
 
@@ -44,7 +44,7 @@ const Product = props => {
   // Else, display the product data
   // Added edit product on double click on card.
   return(  
-    <div className="card" style={divStyle} onDoubleClick={e => handleEdit()}>
+    <div className="card col-sm-9" style={divStyle} onDoubleClick={e => handleEdit()}>
       <div className="card-body"> 
         <h2 className="card-title"> {product.title} </h2>
         <p> {product.description} </p>
