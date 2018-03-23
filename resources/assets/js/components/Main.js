@@ -174,7 +174,6 @@ class Main extends Component {
 		return (
 			<div className="container col-sm-12">
 				<button type="button" className="btn btn-success" onClick={e => this.handleAdd()}>Add new</button>
-				
 				<div className='mainDivStyle row col-sm-12'>
 					<div className='col-sm-12 float-left' style={{padding: 0}}>
 					<input 

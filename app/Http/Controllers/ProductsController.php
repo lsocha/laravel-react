@@ -7,7 +7,6 @@ use App\Product;
 
 class ProductsController extends Controller
 {
- 
     public function index()
     {
         return Product::all();
