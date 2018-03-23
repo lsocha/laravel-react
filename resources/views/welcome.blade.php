@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
@@ -15,3 +16,11 @@
         <script src="{{mix('js/app.js')}}" ></script>
     </body>
 </html>
+=======
+@extends('layouts.app')
+
+@section('content')
+    <h2 style="text-align: center"> Laravel and React application </h2>
+    <div id="root"></div>
+@endsection
+>>>>>>> experiments
