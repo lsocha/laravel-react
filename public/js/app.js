@@ -53774,7 +53774,7 @@ var Main = function (_Component) {
 		value: function handleClick(product) {
 			//handleClick is used to set the state
 			this.setState({ currentProduct: product });
-			window.scrollTo(0, 0);
+			// window.scrollTo(0, 0);  
 		}
 	}, {
 		key: 'handleAddProduct',

@@ -69,7 +69,7 @@ class Main extends Component {
 	handleClick(product) {
 	    //handleClick is used to set the state
 	    this.setState({currentProduct:product});
-	    window.scrollTo(0, 0);  
+	    // window.scrollTo(0, 0);  
 	}
 
 	handleAddProduct(product) {

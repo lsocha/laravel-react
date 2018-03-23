@@ -9,22 +9,9 @@
 
                 <div class="card-body">
                     <form method="post" action="{{route('users.update', $user)}}">
-                        {{ csrf_field() }}
-                        {{ method_field('patch') }}
-
-                 
-<!-- 
-                        <input type="text" name="name"  value="{{ $user->name }}" />
-
-                        <input type="email" name="email"  value="{{ $user->email }}" />
-
-                        <input type="password" name="password" />
-
-                        <input type="password" name="password_confirmation" />
-
-                        <button type="submit">Send</button>\ -->
-
-
+                        @method('patch')
+                        @csrf
+                        
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
