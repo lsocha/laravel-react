@@ -77,6 +77,14 @@ class AddProduct extends Component {
               <input type="number" className="form-control" onChange={(e)=>this.handleInput('price',e)} required />
             </div>
 
+            <div className="form-group">
+              <label>Status</label>
+              <select className="form-control" onChange={(e)=>this.handleInput('availability',e)}>
+                <option value="1">In stock</option>
+                <option value="0">Out of stock</option>
+              </select>
+            </div>
+
             {/*<div className="form-check">
               <input type="checkbox" className="form-check-input" value='1' onChange={(e)=>this.handleInput('availability',e)} />
               <label className="form-check-label">In stock</label>

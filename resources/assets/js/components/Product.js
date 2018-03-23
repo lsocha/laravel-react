@@ -48,7 +48,7 @@ const Product = props => {
       <div className="card-body"> 
         <h2 className="card-title"> {product.title} </h2>
         <p> {product.description} </p>
-        <h4>Status {product.availability ? prodAvailable : prodUnavailable} </h4>
+        <h4>Status {parseInt(product.availability) ? prodAvailable : prodUnavailable} </h4>
         <h4> Price : {product.price} </h4>
         <input className="btn btn-primary" type="button" value="edit" onClick={e => handleEdit()} />
         <button className="btn btn-danger float-right" value="delete" onClick={ e => handleDeleteConfirmation()}> Delete</button>

@@ -25,11 +25,13 @@ class EditProduct extends Component {
     let state = Object.assign({}, this.state.product);
     state[key] = e.target.value;
     this.setState({ product: state });
+    console.log(state);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.update(this.state.product);
+    console.log(this.state.product);
     this.editForm.reset();
   }
 
@@ -62,6 +64,14 @@ class EditProduct extends Component {
             <div className="form-group">
               <label> Price: </label>
               <input type="number" value={product.price} className="form-control" onChange={(e)=>this.handleInput('price',e)} required />
+            </div>
+
+            <div className="form-group">
+              <label>Status</label>
+              <select className="form-control" value={product.availability} onChange={(e)=>this.handleInput('availability',e)}>
+                <option value="1">In stock</option>
+                <option value="0">Out of stock</option>
+              </select>
             </div>
 
             <input type="submit" className="btn btn-primary float-right" value="Save" />
