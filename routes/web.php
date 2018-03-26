@@ -18,6 +18,9 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', function () {
+    return view('welcome');
+});
 
 // edit user
 Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
